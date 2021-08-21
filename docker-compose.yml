@@ -29,7 +29,7 @@ services:
     networks:
       - symfony
     image: pokemon-tournament_pokemon_tournament
-
+    
   phpmyadmin:
     depends_on:
       - db

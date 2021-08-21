@@ -15,8 +15,16 @@
 
 ## Technologies
 
+Pokemon Tournament is a Symfony web app application using Vue.js frontend framework and Bootstrap 5.
+
+#### Server Side Framework
+Symfony: 5.3.*<br>
+
+#### Frontend Framework
+Vue.js: 2.6.14<br>
+Bootstrap: 5
+
 This application is dockerized and you need a docker serve to run it.
-Pokemon Tournament is a Symfony web app application using Vue.js frontend framework 
 
 ## Installation
 

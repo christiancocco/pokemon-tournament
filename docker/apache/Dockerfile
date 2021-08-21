@@ -8,7 +8,9 @@ RUN apt-get update \
 && apt-get install git -y\
 && apt-get install zip -y\
 && curl -sS https://get.symfony.com/cli/installer | bash \
-&& mv /root/.symfony/bin/symfony /usr/local/bin/symfony
+&& mv /root/.symfony/bin/symfony /usr/local/bin/symfony \
+&& curl -fsSL https://deb.nodesource.com/setup_current.x | bash - \
+&& apt-get install -y nodejs
 
 COPY --from=composer /usr/bin/composer /usr/bin/composer
 
