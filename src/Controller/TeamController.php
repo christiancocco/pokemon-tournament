@@ -80,7 +80,6 @@ class TeamController extends AbstractController
         $name = json_decode($request->getContent())->name;
         $id = json_decode($request->getContent())->id;
         $pokemons = json_decode($request->getContent())->teamitems;
-        //$logger->debug(json_encode(json_decode($request->getContent())->teamitems));
         $entityManager = $this->getDoctrine()->getManager();
         switch ($request->getMethod()) {
             case 'POST':
