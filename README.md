@@ -28,19 +28,6 @@ This application is dockerized and you need a docker serve to run it.
 
 ## Installation
 
-To install all node modules
-```bash
-$ npm install
-```
-To compile auxiliary assets webpack
-```bash
-$ npm run build
-```
-To install all server side packages and all dependencies
-```bash
-$ composer install
-```
-
 For build images, create a container and run it
 ```bash
 $ docker-compose up -d
