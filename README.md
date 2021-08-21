@@ -16,16 +16,30 @@
 ## Technologies
 
 This application is dockerized and you need a docker serve to run it.
+Pokemon Tournament is a Symfony web app application using Vue.js frontend framework 
 
 ## Installation
 
+To install all node modules
+```bash
+$ npm install
+```
+To compile auxiliary assets webpack
+```bash
+$ npm run build
+```
+To install all server side packages and all dependencies
+```bash
+$ composer install
+```
+
 For build images, create a container and run it
 ```bash
-docker-compose up -d
+$ docker-compose up -d
 ```
 To creare a database on pokemon_tournament_app container
 ```bash
-docker exec -it pokemon_tournament_app symfony console doctrine:migration:migrate --no-interaction
+$ docker exec -it pokemon_tournament_app symfony console doctrine:migration:migrate --no-interaction
 ```
 
 ## Usage
