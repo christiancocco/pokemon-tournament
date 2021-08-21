@@ -1,0 +1,50 @@
+version: '3.8'
+
+services:
+  db:
+    build:
+      context: ./docker/database
+    container_name: pokemon_tournament_db
+    volumes:
+      - ./docker/database/config:/etc/mysql/conf.d/
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: pokemon_tournament
+    ports:
+      - "3307:3306"
+    networks:
+      - symfony
+  pokemon_tournament:
+    build:
+      context: ./docker/apache
+    container_name: pokemon_tournament_app
+    depends_on:
+      - db
+    volumes:
+      - .:/var/www/html/pokemon_tournament/
+    ports:
+      - 2520:8050
+    restart: always
+    entrypoint: sh /var/www/html/pokemon_tournament/docker/apache/start_server.sh
+    networks:
+      - symfony
+    image: pokemon-tournament_pokemon_tournament
+
+  phpmyadmin:
+    depends_on:
+      - db
+    image: phpmyadmin/phpmyadmin
+    container_name: pokemon_tournament_phpmyadmin
+    links:
+      - db
+    restart: always
+    ports:
+      - 8089:80
+    environment:
+      PMA_HOST: pokemon_tournament_db
+      MYSQL_ROOT_PASSWORD: root
+    networks:
+      - symfony
+
+networks:
+  symfony:
