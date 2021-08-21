@@ -1,6 +1,5 @@
-<p align="center"><img src="https://raw.githubusercontent.com/christiancocco/pokemon-tournament/main/assets/images/Pokemon_logo.png" width="400"></p>
-
 # Pokemon Tournament
+<p align="center"><img src="https://raw.githubusercontent.com/christiancocco/pokemon-tournament/main/assets/images/Pokemon_logo.png" width="400"></p>
 
 ## Table of Contents
 1. [General Info](#general-info)
