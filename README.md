@@ -1,11 +1,23 @@
 # Pokemon Tournament
+***
+
+## Table of Contents
+1. [General Info](#general-info)
+2. [Technologies](#technologies)
+3. [Installation](#installation)
+4. [Usage](#usage)
+5. [License](#license)
+
+## General Info
 
 "Pokemon Tournament" is a simple application to create our Pokemon Team for the next Pokemon Tournament.
+
+
+## Technologies
+
 This application is dockerized and you need a docker serve to run it.
 
 ## Installation
-
-Use the package manager [pip](https://pip.pypa.io/en/stable/) to install foobar.
 
 For build images, create a container and run it
 ```bash
@@ -21,9 +33,6 @@ Following the link to access to the application and phpMyAdmin to see the data
 
 - http://127.0.0.1:8089 : To access phpMyAdmin
 - http://127.0.0.1:2520 : To access the Pokemon Tournament application
-
-## Contributing
-
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
