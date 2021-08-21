@@ -32,10 +32,6 @@ For build images, create a container and run it
 ```bash
 $ docker-compose up -d
 ```
-To creare a database on pokemon_tournament_app container
-```bash
-$ docker exec -it pokemon_tournament_app symfony console doctrine:migration:migrate --no-interaction
-```
 
 ## Usage
 Following the link to access to the application and phpMyAdmin to see the data

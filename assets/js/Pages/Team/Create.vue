@@ -74,10 +74,10 @@
 </div>
       <div class="row">
         <div class="col-md-1">
-          <button class="btn btn-primary" type="submit" form="form-team" :disabled="form.errors.any()">{{ $t("save") }}</button>
+          <button class="btn btn-outline-secondary" type="button" @click="teamList">{{ $t('back') }}</button>
         </div>
         <div class="col-md-1">
-          <button class="btn btn-outline-secondary" type="button" @click="teamList">{{ $t('back') }}</button>
+          <button class="btn btn-primary" type="submit" form="form-team" :disabled="form.errors.any()">{{ $t("save") }}</button>
         </div>
         <div class="col-2">
         <button
