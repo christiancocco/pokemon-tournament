@@ -5,6 +5,8 @@ services:
     build:
       context: ./docker/database
     container_name: pokemon_tournament_db
+    command: >
+      bash -c "chmod 644 /etc/mysql/conf.d/*.cnf && /entrypoint.sh mysqld"
     volumes:
       - ./docker/database/config:/etc/mysql/conf.d/
       - mysql-data:/var/data
@@ -20,6 +22,8 @@ services:
     build:
       context: ./docker/apache
     container_name: pokemon_tournament_app
+    command: >
+      bash -c "composer install && npm install && npm run build && symfony console doctrine:migration:migrate --no-interaction"
     depends_on:
       - db
     volumes:
