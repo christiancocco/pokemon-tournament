@@ -1,5 +1,6 @@
 FROM php:7.4-apache
 COPY --from=composer /usr/bin/composer /usr/bin/composer
+WORKDIR /var/www/html/pokemon_tournament/
 RUN apt-get update \
 && apt-get install -y \
 && apt-get autoremove -y \
@@ -15,7 +16,5 @@ RUN apt-get update \
 && npm install \
 && npm run build \
 && symfony console doctrine:migration:migrate --no-interaction
-
-WORKDIR /var/www/html/pokemon_tournament/
 
 EXPOSE 8050
