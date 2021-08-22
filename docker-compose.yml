@@ -27,11 +27,10 @@ services:
     volumes:
       - .:/var/www/html/pokemon_tournament/
     command: >
-      bash -c "composer install && npm install && npm run build && symfony console doctrine:migration:migrate --no-interaction"
+      bash -c "composer install && npm install && npm run build && symfony console doctrine:migration:migrate --no-interaction && sh /var/www/html/pokemon_tournament/docker/apache/start_server.sh"
     ports:
       - 2520:8050
     restart: always
-    entrypoint: sh /var/www/html/pokemon_tournament/docker/apache/start_server.sh
     networks:
       - symfony
     image: pokemon-tournament_pokemon_tournament
