@@ -12,6 +12,7 @@ services:
       MYSQL_DATABASE: pokemon_tournament
     ports:
       - "3307:3306"
+    restart: always
     networks:
       - symfony
   pokemon_tournament:
