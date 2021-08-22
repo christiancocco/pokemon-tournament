@@ -22,8 +22,6 @@ services:
     build:
       context: ./docker/apache
     container_name: pokemon_tournament_app
-    command: >
-      bash -c "composer install && npm install && npm run build && symfony console doctrine:migration:migrate --no-interaction"
     depends_on:
       - db
     volumes:
