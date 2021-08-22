@@ -30,7 +30,7 @@ This application is dockerized and you need a docker serve to run it.
 
 For build images, create a container and run it
 ```bash
-$ docker-compose up -d
+docker-compose up -d
 ```
 
 When container starts, some commands will be run:<br>
