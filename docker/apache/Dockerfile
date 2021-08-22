@@ -1,6 +1,5 @@
 FROM php:7.4-apache
-COPY --from=composer /usr/bin/composer /usr/bin/composer
-WORKDIR /var/www/html/pokemon_tournament/
+
 RUN apt-get update \
 && apt-get install -y \
 && apt-get autoremove -y \
@@ -11,10 +10,10 @@ RUN apt-get update \
 && curl -sS https://get.symfony.com/cli/installer | bash \
 && mv /root/.symfony/bin/symfony /usr/local/bin/symfony \
 && curl -fsSL https://deb.nodesource.com/setup_current.x | bash - \
-&& apt-get install -y nodejs \
-&& composer install \
-&& npm install \
-&& npm run build \
-&& symfony console doctrine:migration:migrate --no-interaction
+&& apt-get install -y nodejs
+
+COPY --from=composer /usr/bin/composer /usr/bin/composer
+
+WORKDIR /var/www/html/pokemon_tournament/
 
 EXPOSE 8050

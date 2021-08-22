@@ -26,6 +26,8 @@ services:
       - db
     volumes:
       - .:/var/www/html/pokemon_tournament/
+    command: >
+      bash -c "composer install && npm install && npm run build && symfony console doctrine:migration:migrate --no-interaction"
     ports:
       - 2520:8050
     restart: always
