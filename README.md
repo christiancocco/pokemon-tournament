@@ -40,7 +40,7 @@ When container starts, some commands will be run:<br>
 <li>npm run build</li>
 <li>symfony console doctrine:migration:migrate --no-interaction</li>
 </ul>
-For this reason the container will be ready after a few seconds.
+For this reason the container will be ready after a few minutes.
 
 ## Usage
 Following the link to access to the application and phpMyAdmin to see the data

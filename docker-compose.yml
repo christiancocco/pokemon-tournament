@@ -7,6 +7,7 @@ services:
     container_name: pokemon_tournament_db
     volumes:
       - ./docker/database/config:/etc/mysql/conf.d/
+      - mysql-data:/var/data
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: pokemon_tournament
@@ -49,3 +50,5 @@ services:
 
 networks:
   symfony:
+volumes:
+  mysql-data:
