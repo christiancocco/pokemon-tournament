@@ -1,5 +1,5 @@
 FROM php:7.4-apache
-
+COPY --from=composer /usr/bin/composer /usr/bin/composer
 RUN apt-get update \
 && apt-get install -y \
 && apt-get autoremove -y \
@@ -15,8 +15,6 @@ RUN apt-get update \
 && npm install \
 && npm run build \
 && symfony console doctrine:migration:migrate --no-interaction
-
-COPY --from=composer /usr/bin/composer /usr/bin/composer
 
 WORKDIR /var/www/html/pokemon_tournament/
 
