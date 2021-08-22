@@ -22,9 +22,9 @@
         <tbody>
           <tr :key="item.name" v-for="item in this.data">
             <td scope="row">
-              <button class="btn btn-outline-secondary" type="button" @click="editTeam" :data-id="item.id">{{ $t('edit') }}</button>
+              <button class="btn btn-outline-secondary" type="button" @click="deleteTeam" :data-id="item.id">X</button>
             </td>
-            <td>{{ item.name }}</td>
+            <td><a :href="'/team/' + item.id + '/edit'">{{ item.name }}</a></td>
             <td>
               <img :key="pokemon.name"  v-for="pokemon in item.pokemons" :src="pokemon.image" :alt="pokemon.name" :title="pokemon.name">
             </td>
@@ -42,15 +42,6 @@
           </tr>
         </tbody>
       </table>
-    </div>
-    <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-      <button
-        type="button"
-        class="btn btn-primary btn-lg px-4 gap-3"
-        @click="createTeam"
-      >
-        {{ $t("home.createteam") }}
-      </button>
     </div>
   </div>
 </template>
@@ -79,6 +70,10 @@ export default {
     editTeam(event)
     {
       location.href = "/team/" + event.target.getAttribute("data-id") + "/edit";
+    },
+    deleteTeam(event)
+    {
+      location.href = "/team/" + event.target.getAttribute("data-id") + "/delete";
     },
     createTeam() {
       location.href = "/team/create";

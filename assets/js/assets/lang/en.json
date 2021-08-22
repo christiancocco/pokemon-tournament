@@ -38,6 +38,7 @@
     "name": "Name",
     "items": "Pokemons",
     "base_experiences": "Base Experiences",
+    "base_experience_total": "Total Base Experience",
     "types": "Types",
     "id": "ID",
     "abilities": "Abilities",

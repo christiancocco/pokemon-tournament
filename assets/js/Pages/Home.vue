@@ -7,22 +7,6 @@
         <p class="lead mb-4">
           {{ $t("home.message") }}
         </p>
-        <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-          <button
-            type="button"
-            class="btn btn-primary btn-lg px-4 gap-3"
-            @click="createTeam"
-          >
-            {{ $t("home.createteam") }}
-          </button>
-          <button
-            type="button"
-            class="btn btn-outline-secondary btn-lg px-4"
-            @click="teamList"
-          >
-            {{ $t("home.teamlist") }}
-          </button>
-        </div>
       </div>
     </div>
   </div>
@@ -42,17 +26,6 @@ export default {
   },
   mounted() {},
   methods: {
-    createTeam() {
-      location.href = "/team/create";
-    },
-    teamList() {
-      location.href = "/team/list";
-    },
-    changeLocale(event)
-    {
-      this.$root.switchLocale(event, 'en');
-      //console.log(this.$root.switchLocale());
-    }
   },
 };
 </script>

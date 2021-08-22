@@ -10,8 +10,8 @@
 
 ## General Info
 
-"Pokemon Tournament" is a simple application to create our Pokemon Team for the next Pokemon Tournament.
-
+"Pokemon Tournament" is a simple application to create our Pokemon Team for the next Pokemon Tournament.<br>
+With this application you can view pokemon team's list, create, view and edit team detail.<br>
 
 ## Technologies
 
@@ -32,6 +32,15 @@ For build images, create a container and run it
 ```bash
 $ docker-compose up -d
 ```
+
+When container starts, some commands will be run:<br>
+<ul>
+<li>composer install</li>
+<li>npm install</li>
+<li>npm run build</li>
+<li>symfony console doctrine:migration:migrate --no-interaction</li>
+</ul>
+For this reason the container will be ready after a few seconds.
 
 ## Usage
 Following the link to access to the application and phpMyAdmin to see the data

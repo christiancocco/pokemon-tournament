@@ -14,6 +14,7 @@ use App\Entity\Team;
 use Symfony\Contracts\Cache\ItemInterface;
 use Symfony\Component\Cache\Adapter\FilesystemAdapter;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 /**
@@ -36,7 +37,7 @@ class TeamController extends AbstractController
             $all = json_decode($api->resourceList('type', '2000', '0'));
             return $all->results;
         });
-        return $inertia->render('Team/List', ['pokemonTypes' => $pokemonTypes , "pokemonTeams" => $teams]);
+        return $inertia->render('Team/List', ['pokemonTypes' => $pokemonTypes, "pokemonTeams" => $teams]);
     }
 
 
@@ -49,7 +50,7 @@ class TeamController extends AbstractController
         $pokemons = $cache->get('pokemons', function (ItemInterface $item) {
             $item->expiresAfter(3600);
             $api = new PokeApi();
-            $all = json_decode($api->resourceList('pokemon', '999999999', '0'));   
+            $all = json_decode($api->resourceList('pokemon', '999999999', '0'));
             return $all;
         });
         $cache->delete('pokemons');
@@ -71,6 +72,8 @@ class TeamController extends AbstractController
         });
         return $inertia->render('Team/Create', ['data' => $pokemons, 'team' => $team]);
     }
+
+
 
     /**
      * @Route("/save", name="save_team", methods={"POST", "PUT"})
@@ -132,7 +135,19 @@ class TeamController extends AbstractController
             $api = new PokeApi();
             $pokemon = json_decode($api->pokemon($name));
             return $pokemon;
-        });          
+        });
         return $this->json($pokemon);
+    }
+
+    /**
+     * @Route("/{id}/delete", name="team_delete", methods={"GET"})
+     */
+    public function delete(int $id): RedirectResponse
+    {
+        $entityManager = $this->getDoctrine()->getManager();
+        $team = $this->getDoctrine()->getRepository(Team::class)->findOneBy(['id' => $id]);
+        $entityManager->remove($team);
+        $entityManager->flush();
+        return $this->redirectToRoute('team_list');
     }
 }

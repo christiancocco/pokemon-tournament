@@ -70,12 +70,15 @@
       </td>
     </tr>
   </tbody>
+  <tfoot>
+    <tr>
+      <th scope="row" colspan="2" class="text-end">{{ $t('base_experience_total') }}</th>
+        <td>{{ base_experience_total }}</td>
+      </tr>
+  </tfoot>
 </table>
 </div>
       <div class="row">
-        <div class="col-md-1">
-          <button class="btn btn-outline-secondary" type="button" @click="teamList">{{ $t('back') }}</button>
-        </div>
         <div class="col-md-1">
           <button class="btn btn-primary" type="submit" form="form-team" :disabled="form.errors.any()">{{ $t("save") }}</button>
         </div>
@@ -136,6 +139,7 @@ export default {
       errors: [],
       catching: false,
       image: image,
+      base_experience_total: 0
     };
   },
   mounted() {
@@ -146,6 +150,7 @@ export default {
     }
     this.numPokemons = this.data.count;
     this.availablePokemons = this.data.results;
+    this.base_experience_total = this.calcBaseExperienceTotal();
   },
   methods: {
     teamList() {
@@ -164,6 +169,7 @@ export default {
           this.numPokemons--;
           this.catching = false;
           $("#gonnaModal .btn-close").click();
+          this.base_experience_total = this.calcBaseExperienceTotal();
         });
     },
     deleteItem(event) {
@@ -172,6 +178,15 @@ export default {
         (element) => element.name == pokemon
       );
       this.pokemons.splice(indexElement, 1);
+      this.base_experience_total = this.calcBaseExperienceTotal();
+    },
+    calcBaseExperienceTotal()
+    {
+      var total = 0;
+      this.pokemons.forEach(element => {
+        total += element.info.base_experience;
+      });
+      return total;
     },
 
     /* Submit the form */
