@@ -10,7 +10,11 @@ RUN apt-get update \
 && curl -sS https://get.symfony.com/cli/installer | bash \
 && mv /root/.symfony/bin/symfony /usr/local/bin/symfony \
 && curl -fsSL https://deb.nodesource.com/setup_current.x | bash - \
-&& apt-get install -y nodejs
+&& apt-get install -y nodejs \
+&& composer install \
+&& npm install \
+&& npm run build \
+&& symfony console doctrine:migration:migrate --no-interaction
 
 COPY --from=composer /usr/bin/composer /usr/bin/composer
 
