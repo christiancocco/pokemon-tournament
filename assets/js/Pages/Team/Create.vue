@@ -80,7 +80,7 @@
 </div>
       <div class="row">
         <div class="col-md-1">
-          <button class="btn btn-primary" type="submit" form="form-team" :disabled="form.errors.any()">{{ $t("save") }}</button>
+          <button class="btn btn-primary" type="submit" form="form-team" :disabled="form.errors.any() || status">{{ $t(statusLabel) }}</button>
         </div>
         <div class="col-2">
         <button
@@ -132,14 +132,16 @@ export default {
         name: "",
         teamitems: "",
       }),
-      url: "/team/save",
+      url: "/api/team/save",
       numPokemons: 0,
       pokemons: [],
       availablePokemons: [],
       errors: [],
       catching: false,
       image: image,
-      base_experience_total: 0
+      base_experience_total: 0,
+      status: false,
+      statusLabel: "save"
     };
   },
   mounted() {
@@ -194,6 +196,8 @@ export default {
       var id = this.form.id;
       var thisObj = this;
       this.form.teamitems = this.pokemons;
+      this.status = true;
+      this.statusLabel = "saving";
       this.form.submit(id == 0 ? "post" : "put", this.url).then((response) => {
         if (response.code == 200) {
           location.href = "/team/list";
@@ -204,6 +208,8 @@ export default {
           violations.forEach(function (item) {
             thisObj.errors.push(item.title);
           });
+          thisObj.status = false;
+          thisObj.statusLabel = 'save';
         }
       });
     },

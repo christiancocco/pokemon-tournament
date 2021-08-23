@@ -1,12 +1,14 @@
 <template>
   <div>
     <h1>{{ $t("team.teamlist") }}</h1>
-    
+
     <select v-bind="typeSelected" @change="filterTeams">
       <option value="" selected>-</option>
-      <option v-for="pokemonType in pokemonTypes" :key="pokemonType.name">{{ pokemonType.name }}</option>
+      <option v-for="pokemonType in pokemonTypes" :key="pokemonType.name">
+        {{ pokemonType.name }}
+      </option>
     </select>
-    
+
     <div class="table-responsive">
       <table class="table table-striped table-hover">
         <thead>
@@ -22,14 +24,30 @@
         <tbody>
           <tr :key="item.name" v-for="item in this.data">
             <td scope="row">
-              <button class="btn btn-outline-secondary" type="button" @click="deleteTeam" :data-id="item.id">X</button>
+              <button
+                class="btn btn-outline-secondary"
+                type="button"
+                @click="deleteTeam"
+                :data-id="item.id"
+                :data-index="item.id"
+              >
+                X
+              </button>
             </td>
-            <td><a :href="'/team/' + item.id + '/edit'">{{ item.name }}</a></td>
             <td>
-              <img :key="pokemon.name"  v-for="pokemon in item.pokemons" :src="pokemon.image" :alt="pokemon.name" :title="pokemon.name">
+              <a :href="'/team/' + item.id + '/edit'">{{ item.name }}</a>
             </td>
             <td>
-              {{ item.total_base_experience}}
+              <img
+                :key="pokemon.name"
+                v-for="pokemon in item.pokemons"
+                :src="pokemon.image"
+                :alt="pokemon.name"
+                :title="pokemon.name"
+              />
+            </td>
+            <td>
+              {{ item.total_base_experience }}
             </td>
             <td>
               <ul>
@@ -37,7 +55,7 @@
               </ul>
             </td>
             <td>
-              {{ item.created|moment("d/M/YYYY HH:mm")}}
+              {{ item.created | moment("d/M/YYYY HH:mm") }}
             </td>
           </tr>
         </tbody>
@@ -57,36 +75,40 @@ export default {
     return {
       obj: "teams",
       data: this.pokemonTeams,
-      typeSelected: 0
+      typeSelected: 0,
     };
   },
-  computed: {
+  computed: {},
+  mounted() {
     
   },
-  mounted() {
-    //$('#test').html('ciao');
-  },
   methods: {
-    editTeam(event)
-    {
+    editTeam(event) {
       location.href = "/team/" + event.target.getAttribute("data-id") + "/edit";
     },
-    deleteTeam(event)
-    {
-      location.href = "/team/" + event.target.getAttribute("data-id") + "/delete";
+    deleteTeam(event) {
+      if (confirm(this.$t('delete_confirm_message'))) {
+        axios
+          .delete("/api/team/" + event.target.getAttribute("data-id") + "/delete")
+          .then((resp) => {
+            location.href = "/team/list";
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      }
     },
     createTeam() {
       location.href = "/team/create";
     },
-    filterTeams(event)
-    {
-      if (event.target.value)
-      {
-        this.data = this.pokemonTeams.filter(element => element.types.findIndex(item => item == event.target.value) > -1);
-      }
-      else
-        this.data = this.pokemonTeams;
-    }
+    filterTeams(event) {
+      if (event.target.value) {
+        this.data = this.pokemonTeams.filter(
+          (element) =>
+            element.types.findIndex((item) => item == event.target.value) > -1
+        );
+      } else this.data = this.pokemonTeams;
+    },
   },
 };
 </script>

@@ -35,6 +35,8 @@
         "takepokemon": "Gotta Catch 'Em All!"
     },
     "save": "Save",
+    "saving": "Saving",
+    "delete_confirm_message": "Do you really want to delete?",
     "name": "Name",
     "items": "Pokemons",
     "base_experiences": "Base Experiences",
