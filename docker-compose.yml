@@ -18,6 +18,7 @@ services:
     restart: always
     networks:
       - symfony
+    image: christiancocco/pokemon-tournament-db
   pokemon_tournament:
     build:
       context: ./docker/apache
@@ -33,7 +34,7 @@ services:
     restart: always
     networks:
       - symfony
-    image: pokemon-tournament_pokemon_tournament
+    image: christiancocco/pokemon-tournament
     
   phpmyadmin:
     depends_on:
